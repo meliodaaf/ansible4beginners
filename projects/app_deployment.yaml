@@ -6,6 +6,7 @@
       - firewalld
       - httpd
       - mariadb
+      - mysql-server
 
   tasks:
       -

@@ -1,3 +1,15 @@
 prod ansible_host=192.168.203.162 ansible_user=root ansible_ssh_pass=iamgroot
 dev ansible_host=192.168.203.176 ansible_user=root ansible_ssh_pass=iamgroot
-ubuntu ansible_host=192.168.203.178 ansible_user=groot ansible_ssh_pass=iamgroot
+ubuntu_server ansible_host=192.168.203.178 ansible_user=root ansible_ssh_pass=iamgroot
+
+[centos]
+prod
+dev
+
+[ubuntu]
+ubuntu_server
+
+[all_servers:children]
+centos
+ubuntu
+

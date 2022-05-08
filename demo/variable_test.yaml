@@ -1,0 +1,23 @@
+-
+  name: "Update nameserver entry"
+  hosts: centos
+  gather_facts: false
+  vars:
+    nameserver_ip: 8.8.8.8
+    snmp_port: 160-161
+  tasks:
+    - name: "Update centos resolv.conf"
+      lineinfile:
+        path: /etc/resolv.conf
+        line: "nameserver {{ nameserver_ip }}"
+
+    - name: "Enable firewalld"
+      service:
+        name: firewalld
+        state: started
+
+    - name: "Disable SNMP Ports"
+      firewalld:
+        port: "{{ snmp_port }}/tcp"
+        permanent: true
+        state: disabled
