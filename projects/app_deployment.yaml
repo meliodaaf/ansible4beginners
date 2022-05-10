@@ -6,7 +6,6 @@
       - firewalld
       - httpd
       - mariadb
-      - mysql-server
 
   tasks:
       -
@@ -15,5 +14,10 @@
           state: present
         with_items: "{{ packages }}"
 
-
+      - name: "Start packages"
+        service:
+          name: "{{ item }}"
+          enabled: true
+          state: started
+        with_items: "{{ packages }}"
 
